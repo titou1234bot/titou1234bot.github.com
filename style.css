@@ -61,9 +61,10 @@ header {
 }
 .slideshow img {
   width: 100%;
-  height: auto;
+  height: 500px;
+  object-fit: cover;
   display: block;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   opacity: 1;
 }
 .slideshow img.fade-out { opacity: 0; }
