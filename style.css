@@ -67,6 +67,31 @@ header {
   opacity: 1;
 }
 .slideshow img.fade-out { opacity: 0; }
+
+/* Arrow navigation */
+.slideshow { position: relative; }
+.slideshow .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: none;
+  width: 44px;
+  height: 64px;
+  font-size: 28px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+.slideshow .arrow.left { left: 12px; }
+.slideshow .arrow.right { right: 12px; }
+.slideshow .arrow:hover { background: rgba(0,0,0,0.6); }
+.slideshow .arrow:focus { outline: 3px solid rgba(180,138,120,0.4); }
 footer {
   text-align: center;
   padding: 1em 0;

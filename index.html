@@ -18,7 +18,9 @@
   <section class="photos">
     <h2>Our Photos</h2>
     <div class="slideshow" aria-live="polite">
+      <button class="arrow left" aria-label="Previous photo">‹</button>
       <img id="slideshow-image" src="photos/photo1.jpeg" alt="Couple photo">
+      <button class="arrow right" aria-label="Next photo">›</button>
     </div>
   </section>
   <script>
@@ -29,30 +31,36 @@
         'photos/photo3.jpeg'
       ];
       const img = document.getElementById('slideshow-image');
+      const prevBtn = document.querySelector('.slideshow .arrow.left');
+      const nextBtn = document.querySelector('.slideshow .arrow.right');
       let idx = 0;
       const fadeClass = 'fade-out';
-      const changeDelay = 5000; // 5 seconds
-      const fadeTime = 800; // match CSS transition
+      const fadeTime = 500; // match CSS transition
 
-      function nextImage() {
-        // start fade out
+      // Preload images
+      images.forEach((src) => { const i = new Image(); i.src = src; });
+
+      function showIndex(nextIndex) {
+        if (nextIndex === idx) return;
         img.classList.add(fadeClass);
-        // after fade out, swap src and fade in
         setTimeout(() => {
-          idx = (idx + 1) % images.length;
+          idx = (nextIndex + images.length) % images.length;
           img.src = images[idx];
           img.classList.remove(fadeClass);
+          img.focus();
         }, fadeTime);
       }
 
-      // start the interval
-      let timer = setInterval(nextImage, changeDelay);
+      function showNext() { showIndex(idx + 1); }
+      function showPrev() { showIndex(idx - 1); }
 
-      // pause on hover for better UX
-      img.addEventListener('mouseenter', () => clearInterval(timer));
-      img.addEventListener('mouseleave', () => {
-        clearInterval(timer);
-        timer = setInterval(nextImage, changeDelay);
+      nextBtn.addEventListener('click', showNext);
+      prevBtn.addEventListener('click', showPrev);
+
+      // keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
       });
     })();
   </script>
