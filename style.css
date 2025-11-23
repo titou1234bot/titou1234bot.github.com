@@ -36,6 +36,9 @@ header {
   padding: 2em;
   border-radius: 8px;
 }
+.photos h2 {
+  text-align: center;
+}
 .gallery {
   display: flex;
   gap: 1em;
