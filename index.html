@@ -13,15 +13,48 @@
   </nav>
   <header>
     <h1>Welcome to Our Wedding</h1>
-    <p>Join us as we celebrate our special day!</p>
+    <p>Join us in Normandy as we celebrate our special day!</p>
   </header>
   <section class="photos">
     <h2>Our Photos</h2>
-    <div class="gallery">
-      <img src="photos/photo1.jpeg" alt="Couple Photo 1">
-      <img src="photos/photo2.jpeg" alt="Couple Photo 2">
-      <img src="photos/photo3.jpeg" alt="Couple Photo 3">
+    <div class="slideshow" aria-live="polite">
+      <img id="slideshow-image" src="photos/photo1.jpeg" alt="Couple photo">
     </div>
   </section>
+  <script>
+    (function() {
+      const images = [
+        'photos/photo1.jpeg',
+        'photos/photo2.jpeg',
+        'photos/photo3.jpeg'
+      ];
+      const img = document.getElementById('slideshow-image');
+      let idx = 0;
+      const fadeClass = 'fade-out';
+      const changeDelay = 5000; // 5 seconds
+      const fadeTime = 800; // match CSS transition
+
+      function nextImage() {
+        // start fade out
+        img.classList.add(fadeClass);
+        // after fade out, swap src and fade in
+        setTimeout(() => {
+          idx = (idx + 1) % images.length;
+          img.src = images[idx];
+          img.classList.remove(fadeClass);
+        }, fadeTime);
+      }
+
+      // start the interval
+      let timer = setInterval(nextImage, changeDelay);
+
+      // pause on hover for better UX
+      img.addEventListener('mouseenter', () => clearInterval(timer));
+      img.addEventListener('mouseleave', () => {
+        clearInterval(timer);
+        timer = setInterval(nextImage, changeDelay);
+      });
+    })();
+  </script>
 </body>
 </html>

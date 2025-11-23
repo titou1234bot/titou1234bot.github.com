@@ -49,6 +49,24 @@ header {
   border-radius: 8px;
   border: 2px solid #eee;
 }
+
+/* Slideshow styles (homepage dynamic photos) */
+.slideshow {
+  max-width: 800px;
+  margin: 2em auto;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.slideshow img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.8s ease-in-out;
+  opacity: 1;
+}
+.slideshow img.fade-out { opacity: 0; }
 footer {
   text-align: center;
   padding: 1em 0;
