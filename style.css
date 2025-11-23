@@ -11,14 +11,7 @@ body {
   background-color: #f9f6f2;
 }
 
-/* Page-specific background for location page */
-.bg-mont {
-  /* overlay + image for better contrast */
-  background-image: linear-gradient(rgba(249,246,242,0.62), rgba(249,246,242,0.62)), url('photos/Mont_Saint_Michel.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+/* (removed .bg-mont - background is applied site-wide on the body) */
 nav {
   background: #fff;
   padding: 1em;
