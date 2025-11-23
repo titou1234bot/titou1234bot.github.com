@@ -1,8 +1,14 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background: #f9f6f2;
   color: #333;
+  /* Mont Saint Michel background applied site-wide with a light overlay for readability */
+  background-image: linear-gradient(rgba(249,246,242,0.62), rgba(249,246,242,0.62)), url('photos/Mont_Saint_Michel.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* fallback solid color if image fails to load */
+  background-color: #f9f6f2;
 }
 
 /* Page-specific background for location page */
