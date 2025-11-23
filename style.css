@@ -59,3 +59,58 @@ button {
 button:hover {
   background: #a06c5a;
 }
+
+/* Styles for location / events table */
+.location-section {
+  max-width: 900px;
+  margin: 2em auto;
+  background: #fff;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(180,138,120,0.06);
+}
+.events-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+.events-table thead th {
+  text-align: left;
+  background: #f3e6e1;
+  color: #5a3c34;
+  padding: 0.75em;
+  font-weight: 700;
+}
+.events-table td {
+  padding: 0.75em;
+  border-bottom: 1px solid #f0ece9;
+  vertical-align: top;
+}
+.events-table tr:nth-child(even) {
+  background: #fbf7f5;
+}
+.events-table tr:hover {
+  background: #fff7f3;
+}
+.map-link {
+  display: inline-block;
+  background: #b48a78;
+  color: #fff;
+  padding: 0.45em 0.7em;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.map-link:hover { background: #a06c5a; }
+.map-note { margin-top: 0.6em; color: #666; font-size: 0.95rem; }
+
+/* Responsive: stack table rows as cards on narrow screens */
+@media (max-width: 600px) {
+  .events-table, .events-table thead, .events-table tbody, .events-table th, .events-table td, .events-table tr {
+    display: block;
+  }
+  .events-table thead { display: none; }
+  .events-table tr { margin-bottom: 1em; background: #fff; border-radius: 8px; padding: 0.75em; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+  .events-table td { border: none; padding: 0.4em 0; }
+  .events-table td:before { content: attr(data-label); font-weight: 700; display: inline-block; width: 110px; color: #5a3c34; }
+}
