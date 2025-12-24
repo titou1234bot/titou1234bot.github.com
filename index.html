@@ -9,59 +9,43 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="location.html">Location & Events</a>
-    <a href="donate.html">Donations</a>
+    <a href="confirm.html">Confirm attendance</a>
+    <a href="donate.html">Wedding gifts</a>
   </nav>
   <header>
     <h1>Welcome to Our Wedding</h1>
     <p>Join us in Normandy as we celebrate our special day!</p>
   </header>
   <section class="photos">
-    <h2>Our photo story</h2>
+    <h2>Our wedding video teaser</h2>
     <div class="slideshow" aria-live="polite">
-      <button class="arrow left" aria-label="Previous photo">‹</button>
-      <img id="slideshow-image" src="photos/photo1.jpeg" alt="Couple photo">
-      <button class="arrow right" aria-label="Next photo">›</button>
+      <video id="hero-video" poster="photos/Photo_video_clip.jpg" controls preload="metadata" aria-label="Wedding video" tabindex="0">
+        <source src="photos/Video_wedding.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
   <script>
     (function() {
-      const images = [
-        'photos/photo1.jpeg',
-        'photos/photo2.jpeg',
-        'photos/photo3.jpeg'
-      ];
-      const img = document.getElementById('slideshow-image');
-      const prevBtn = document.querySelector('.slideshow .arrow.left');
-      const nextBtn = document.querySelector('.slideshow .arrow.right');
-      let idx = 0;
-      const fadeClass = 'fade-out';
-      const fadeTime = 500; // match CSS transition
+      const video = document.getElementById('hero-video');
 
-      // Preload images
-      images.forEach((src) => { const i = new Image(); i.src = src; });
-
-      function showIndex(nextIndex) {
-        if (nextIndex === idx) return;
-        img.classList.add(fadeClass);
-        setTimeout(() => {
-          idx = (nextIndex + images.length) % images.length;
-          img.src = images[idx];
-          img.classList.remove(fadeClass);
-          img.focus();
-        }, fadeTime);
-      }
-
-      function showNext() { showIndex(idx + 1); }
-      function showPrev() { showIndex(idx - 1); }
-
-      nextBtn.addEventListener('click', showNext);
-      prevBtn.addEventListener('click', showPrev);
-
-      // keyboard support
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
+      // Keyboard accessibility: Space toggles play/pause; ArrowRight/Left seek 5s
+      video.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          if (video.paused) video.play(); else video.pause();
+        }
+        if (e.key === 'ArrowRight') {
+          video.currentTime = Math.min(video.duration || 0, video.currentTime + 5);
+        }
+        if (e.key === 'ArrowLeft') {
+          video.currentTime = Math.max(0, video.currentTime - 5);
+        }
       });
+
+      // Add simple state for styling if needed
+      video.addEventListener('play', () => video.setAttribute('data-playing', 'true'));
+      video.addEventListener('pause', () => video.removeAttribute('data-playing'));
     })();
   </script>
 </body>
